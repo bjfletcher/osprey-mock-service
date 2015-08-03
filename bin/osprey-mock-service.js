@@ -22,6 +22,7 @@ var options = {
 mock.loadFile(argv.f, options)
   .then(function (app) {
     var server = http.createServer(function (req, res) {
+      if (req.headers) {
         // Set CORS headers
 	res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
         res.setHeader('Access-Control-Allow-Credentials', "true");
@@ -32,6 +33,7 @@ mock.loadFile(argv.f, options)
 		res.end();
 		return;
 	}
+      }
       app(req, res, finalhandler(req, res))
     })
 
