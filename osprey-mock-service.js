@@ -31,7 +31,7 @@ function createServer (raml, options) {
   var osprey = require('osprey')
   var app = router()
 
-  app.use(osprey.createServer(raml, options))
+  app.use(osprey.server(raml, options))
   app.use(ospreyMockServer(raml))
 
   return app
